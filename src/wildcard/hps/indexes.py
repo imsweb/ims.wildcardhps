@@ -319,7 +319,7 @@ class EDateRangeIndex(BaseIndex):
         if not since or not until:
             return
 
-        return {f"{self.index.id}": since.ISO8601(), f"{self.index.id}2": until.ISO8601()}
+        return {f"{self.index.id}1": since.ISO8601(), f"{self.index.id}2": until.ISO8601()}
 
     def get_query(self, name, value):
         value = self._normalize_query(value)

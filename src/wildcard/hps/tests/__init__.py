@@ -1,15 +1,14 @@
-from wildcard.hps import hook
-from wildcard.hps.opensearch import WildcardHPSCatalog
-from wildcard.hps.interfaces import IWildcardHPSSettings
-from wildcard.hps.testing import WildcardHPS_FUNCTIONAL_TESTING
-from wildcard.hps.testing import WildcardHPS_INTEGRATION_TESTING
+import time
+import unittest
+
+import transaction
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
+from wildcard.hps import hook
+from wildcard.hps.interfaces import IWildcardHPSSettings
+from wildcard.hps.opensearch import WildcardHPSCatalog
+from wildcard.hps.testing import WildcardHPS_FUNCTIONAL_TESTING, WildcardHPS_INTEGRATION_TESTING
 from zope.component import getUtility
-
-import time
-import transaction
-import unittest2 as unittest
 
 
 class BaseTest(unittest.TestCase):

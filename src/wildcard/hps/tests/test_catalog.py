@@ -6,18 +6,17 @@ except ImportError:
         pass
 
 
-from wildcard.hps.hook import getHook
-from wildcard.hps.testing import HAS_ATCONTENTTYPES
-from wildcard.hps.testing import createObject
-from wildcard.hps.tests import BaseFunctionalTest
-from wildcard.hps.utils import getUID
+import unittest
+
 from plone import api
 from plone.app.contentrules.actions.move import MoveAction
 from plone.app.contentrules.tests.dummy import DummyEvent
 from plone.contentrules.rule.interfaces import IExecutable
+from wildcard.hps.hook import getHook
+from wildcard.hps.testing import HAS_ATCONTENTTYPES, createObject
+from wildcard.hps.tests import BaseFunctionalTest
+from wildcard.hps.utils import getUID
 from zope.component import getMultiAdapter
-
-import unittest2 as unittest
 
 EVENT_KLASS = "plone.app.event.dx.interfaces.IDXEvent"
 DOCUMENT_KLASS = "plone.app.contenttypes.interfaces.IDocument"

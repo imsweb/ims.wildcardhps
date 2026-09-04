@@ -1,3 +1,6 @@
+import os
+
+from plone import api
 from plone.app.testing import (
     PLONE_FIXTURE,
     TEST_USER_ID,
@@ -11,6 +14,7 @@ from plone.app.testing import (
 )
 from plone.testing import z2
 from Products.CMFCore.utils import getToolByName
+from wildcard.hps.opensearch import WildcardHPSCatalog
 from zope.configuration import xmlconfig
 
 try:
@@ -57,6 +61,10 @@ class WildcardHPS(PloneSandboxLayer):
         setRoles(portal, TEST_USER_ID, ("Member", "Manager"))
         workflowTool = getToolByName(portal, "portal_workflow")
         workflowTool.setDefaultChain("plone_workflow")
+        wc = WildcardHPSCatalog(api.portal.get_tool("portal_catalog"))
+        if not os.getenv(f"{wc.envprefix}HOSTS"):  # ci/cd should use service
+            os.environ[f"{wc.envprefix}HOSTS"] = "https://osearch-btp-dev.imsweb.com:9200"
+            os.environ[f"{wc.envprefix}HTTP_USERNAME"] = "esplone"
 
     def tearDownPloneSite(self, portal):
         super().tearDownPloneSite(portal)
