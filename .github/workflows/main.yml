@@ -16,7 +16,7 @@ jobs:
       run: uv python install
     - name: Install dependencies
       run: |
-        uv sync --locked --all-extras --dev
+        uv sync --all-extras --dev
         uv pip install ruff
     - name: Ruff
       uses: astral-sh/ruff-action@v4.0.0
@@ -32,7 +32,7 @@ jobs:
       run: uv python install
     - name: Install dependencies
       run: |
-        uv sync --locked --all-extras --dev
+        uv sync --all-extras --dev
         uv pip install sphinx sphinx_rtd_theme sphinx-tabs sphinx-copybutton
     - name: Sphinx build
       run: |
