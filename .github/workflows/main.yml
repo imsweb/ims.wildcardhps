@@ -23,24 +23,6 @@ jobs:
       with:
         args: "format --check --diff"
 
-  docs:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Install uv
-      uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
-    - name: Set up Python
-      run: uv python install
-    - name: Install dependencies
-      run: |
-        uv sync --all-extras --dev
-        uv pip install sphinx sphinx_rtd_theme sphinx-tabs sphinx-copybutton
-    - name: Sphinx build
-      run: |
-        uv run sphinx-build docs _build
-        cp -a htmlcov/ _build/htmlcov
-        ls -la _build/htmlcov/
-
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
