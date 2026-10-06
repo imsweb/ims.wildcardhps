@@ -1,10 +1,16 @@
 Changelog
 =========
 
+1.0.2 (2026-10-06)
+------------------
+
+- Fix hook for Plone object (which is Dexterity content in >=6.0)
+- Tests moved to ims.opensearch
+
 1.0.1 (2026-09-04)
+------------------
 
-
-Version reset for ims.wildcardhps
+- Version reset for ims.wildcardhps
 
 1.4.1 (unreleased)
 ------------------

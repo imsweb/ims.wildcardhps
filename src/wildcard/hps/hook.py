@@ -50,7 +50,9 @@ def index_batch(remove, index, positions, hpscatalog=None):
             # passed here is the original object, not the moved one.
             # So if there is a uuid, we use this to get the correct object.
             # See https://github.com/collective/wildcard.hps/issues/65
-            if uid is not None:
+            if uid and uid == api.portal.get().UID():
+                obj = api.portal.get()
+            elif uid is not None:
                 obj = uuidToObject(uid)
 
             if obj is None:
@@ -129,7 +131,7 @@ def get_index_data(obj, hpscatalog):
                 if hasattr(obj, "getPhysicalPath"):
                     path = "/".join(obj.getPhysicalPath())
                     logger.error(f"Error indexing value: {path}: {index_name}\n{exc}")
-                else:  # portal obj has no getPhysicalPath attr for one
+                else:
                     logger.error(f"Error indexing value: {obj}: {index_name}\n{exc}")
                 value = None
             if value in (None, "None"):
