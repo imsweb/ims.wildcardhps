@@ -37,7 +37,7 @@ jobs:
         uv pip install sphinx sphinx_rtd_theme sphinx-tabs sphinx-copybutton
     - name: Sphinx build
       run: |
-        sphinx-build docs _build
+        uv run sphinx-build docs _build
         cp -a htmlcov/ _build/htmlcov
         ls -la _build/htmlcov/
 
